@@ -240,7 +240,8 @@
             e.preventDefault();
             const plate = plateInput.value;
             if (plate.length >= 7) {
-                // Redireciona direto para a página de débitos enviando a placa
+                // Redireciona direto para a página de débitos enviando a placa via URL
+                // A página debitos.html agora cuidará do resto sem API
                 window.location.href = `debitos.html?plate=${plate}`;
             }
         });
