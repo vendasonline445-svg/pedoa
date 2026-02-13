@@ -1,248 +1,364 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "uz3k46tian");
-</script>
+
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedágio Digital</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <style>
+        /* RESET E GERAL */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Ubuntu', sans-serif;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Header */
+        /* FUNDO FIXO */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 100%);
+        }
+
+        /* HEADER */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
-            border-bottom: 1px solid #222;
+            padding: 25px 60px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
         }
 
         .logo img {
-            height: 40px;
+            height: 45px; 
             width: auto;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
+        nav ul {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 60px 40px;
-            text-align: center;
+            gap: 30px;
+            list-style: none;
         }
 
-        .hero-title {
-            font-size: 72px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            max-width: 1000px;
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 400;
         }
 
-        .hero-title .highlight {
-            color: #cfff00;
+        .btn-header {
+            border: 1px solid #fff;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
         }
 
-        .hero-subtitle {
-            font-size: 16px;
-            color: #888;
-            margin-bottom: 60px;
-            max-width: 600px;
-        }
-
-        /* Card */
-        .card {
-            background-color: #f5f5f5;
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 520px;
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 60px;
+            flex: 1;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            color: #fff;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1.15;
+            text-transform: uppercase;
+        }
+
+        .hero-text .highlight {
+            color: #D6F31F;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: #ccc;
+            margin-top: 20px;
+            font-weight: 300;
+        }
+
+        /* CARD */
+        .card {
+            background-color: #f5f6f8;
+            padding: 40px;
+            border-radius: 12px;
+            width: 420px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
         .card h2 {
+            font-size: 20px;
             color: #1a1a1a;
-            font-size: 26px;
-            margin-bottom: 30px;
-            line-height: 1.3;
-            font-weight: 600;
+            margin-bottom: 25px;
+            font-weight: 400;
         }
 
-        .form-group {
+        input[type="text"] {
+            width: 100%;
+            padding: 16px;
+            background-color: #eef0f2;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            margin-bottom: 12px;
+            font-size: 11px;
+            color: #333;
+        }
+
+        .checkbox-group input { margin-right: 8px; }
+
+        /* RECAPTCHA ESTILO GOOGLE */
+        .fake-recaptcha {
+            background-color: #f9f9f9;
+            border: 1px solid #d3d3d3;
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
             margin-bottom: 20px;
         }
 
-        .form-group input[type="text"] {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 15px;
-            color: #1a1a1a;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-align: center;
-        }
-
-        .form-group input[type="text"]:focus {
-            outline: none;
-            border-color: #cfff00;
-            background-color: #fff;
-        }
-
-        /* Button */
-        .btn {
-            width: 100%;
-            padding: 14px;
-            background-color: #ccc;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: 600;
-            color: #999;
-            cursor: not-allowed;
-            transition: all 0.3s;
-        }
-
-        .btn.active {
-            background-color: #cfff00;
-            color: #1a1a1a;
+        .recaptcha-box {
+            width: 24px; height: 24px;
+            border: 2px solid #c1c1c1;
+            background: #fff;
+            margin-right: 12px;
             cursor: pointer;
         }
 
-        .btn.active:hover {
-            background-color: #b8e600;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #0a0a0a;
-            border-top: 1px solid #222;
-            padding: 50px 40px 30px;
-            margin-top: 100px;
-        }
-
-        .footer-section h3 {
-            color: #ffffff;
-            font-size: 14px;
-            margin-bottom: 12px;
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
             font-weight: 600;
+            background-color: #dbe0e6;
+            color: #9fa6ad;
+            cursor: pointer;
         }
 
-        .footer-section a {
-            color: #888;
-            text-decoration: none;
-            font-size: 13px;
+        .btn-submit.active {
+            background-color: #D6F31F;
+            color: #1a1a1a;
         }
 
-        .footer-bottom {
-            border-top: 1px solid #222;
-            padding-top: 20px;
-            text-align: center;
-            color: #666;
-            font-size: 12px;
-            margin-top: 20px;
+        /* RODAPÉ ACORDEÃO */
+        .support-bar {
+            background-color: #111;
+            color: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
         }
 
-        @media (max-width: 768px) {
-            .hero-title { font-size: 48px; }
-            .card { padding: 30px 20px; }
+        .support-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* FOOTER COM AS LOGOS SOLICITADAS */
+        footer {
+            background-color: #212529;
+            padding: 30px 0;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left img {
+            height: 40px;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        /* Ajuste específico para a logo da Motiva que é um SVG/escrita */
+        .logo-motiva {
+            height: 20px !important;
+        }
+
+        .logo-eco {
+            height: 35px !important;
+        }
+
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; }
+            nav { display: none; }
+            .card { width: 100%; }
         }
     </style>
 </head>
 <body>
+
+    <div class="background-container">
+        <div class="background-overlay"></div>
+    </div>
+
     <header>
         <div class="logo">
-            <img src="freefas.png" alt="Pedágio Digital">
+            <img src="https://pedagiodigital.com/assets/logo-CWdoJbug.png" alt="Pedágio Digital">
         </div>
+        <nav>
+            <ul>
+                <li><a href="#">Fazer Login</a></li>
+                <li><a href="#">Perguntas frequentes</a></li>
+                <li><a href="#" class="btn-header">Criar Conta</a></li>
+            </ul>
+        </nav>
     </header>
 
     <section class="hero">
-        <h1 class="hero-title">
-            DESFRUTE DE TODA A<br>COMODIDADE DO<br>PEDÁGIO <span class="highlight">DIGITAL</span>
-        </h1>
-        <p class="hero-subtitle">Uma nova era para o pedágio começou: ágil e digital como tem que ser.</p>
+        <div class="hero-text">
+            <h1>DESFRUTE DE TODA A<br>COMODIDADE DO<br>PEDÁGIO <span class="highlight">DIGITAL</span></h1>
+            <p>Uma nova era para o pedágio começou: ágil e digital como tem que ser.</p>
+        </div>
 
         <div class="card">
-            <h2>Um único lugar para acessar<br>e controlar seus pagamentos.</h2>
+            <h2>Um <strong>único</strong> lugar para <strong>acessar</strong> e <strong>controlar</strong> seus pagamentos.</h2>
+            
+            <form id="debtForm">
+                <input type="text" id="plateInput" placeholder="DIGITE SUA PLACA" maxlength="7">
 
-            <form id="searchForm">
-                <div class="form-group">
-                    <input 
-                        type="text" 
-                        id="plateInput" 
-                        placeholder="DIGITE SUA PLACA"
-                        maxlength="8"
-                        autocomplete="off"
-                    >
+                <div class="checkbox-group">
+                    <input type="checkbox">
+                    <label>Aceito os <a href="#">Termos e Condições de Uso</a>.</label>
                 </div>
 
-                <button type="submit" class="btn" id="searchBtn" disabled>
-                    Buscar débitos
-                </button>
+                <div class="checkbox-group">
+                    <input type="checkbox">
+                    <label>Estou ciente da <a href="#">Política de Privacidade</a>.</label>
+                </div>
+
+                <div class="fake-recaptcha">
+                    <div style="display:flex; align-items:center;">
+                        <div class="recaptcha-box" id="fakeCaptchaBox"></div>
+                        <span style="font-size:14px; color:#000;">Não sou um robô</span>
+                    </div>
+                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" width="30" style="opacity:0.8;">
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-submit" disabled>Buscar débitos</button>
             </form>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-section">
-            <h3>Central de atendimento</h3>
-            <a href="https://www.motiva.com.br/contatos" target="_blank">www.motiva.com.br/contatos</a>
-            <br><br>
-            <a href="https://freeflow.ecorodoeste.com.br/fale-conosco" target="_blank">freeflow.ecorodoeste.com.br/fale-conosco</a>
+    <section class="support-bar">
+        <div class="support-container">
+            <span style="font-weight:700;">Central de atendimento</span>
+            <span>▼</span>
         </div>
-        <div class="footer-bottom">
-            © 2026 Pedágio Digital. Todos os direitos reservados.
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="https://pedagiodigital.com/assets/logo-CWdoJbug.png" alt="Pedágio Digital">
+            </div>
+            <div class="footer-right">
+                <img src="https://pedagiodigital.com/assets/logo-motiva-BcheVkaT.svg" class="logo-motiva" alt="Motiva">
+                <img src="https://pedagiodigital.com/assets/logo-eco-Cdd8S58B.png" class="logo-eco" alt="Ecorodovias">
+            </div>
         </div>
     </footer>
 
     <script>
         const plateInput = document.getElementById('plateInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const searchForm = document.getElementById('searchForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const fakeCaptchaBox = document.getElementById('fakeCaptchaBox');
+        let isCaptchaChecked = false;
 
-        plateInput.addEventListener('input', function() {
-            let value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-            if (value.length > 8) value = value.slice(0, 8);
-            this.value = value;
-            
-            // Ativa o botão se tiver pelo menos 7 caracteres (padrão de placa)
-            const isValid = value.length >= 7;
-            searchBtn.disabled = !isValid;
-            if (isValid) {
-                searchBtn.classList.add('active');
+        plateInput.addEventListener('input', function(e) {
+            this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+            if(this.value.length === 7) {
+                submitBtn.disabled = false;
+                submitBtn.classList.add('active');
             } else {
-                searchBtn.classList.remove('active');
+                submitBtn.disabled = true;
+                submitBtn.classList.remove('active');
             }
         });
 
-        searchForm.addEventListener('submit', function(e) {
+        fakeCaptchaBox.addEventListener('click', function() {
+            this.innerHTML = '✓';
+            this.style.color = '#009e55';
+            this.style.fontSize = '20px';
+            this.style.textAlign = 'center';
+            isCaptchaChecked = true;
+        });
+
+        document.getElementById('debtForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const plate = plateInput.value;
-            if (plate.length >= 7) {
-                // Redireciona direto para a página de débitos enviando a placa via URL
-                // A página debitos.html agora cuidará do resto sem API
-                window.location.href = `debitos.html?plate=${plate}`;
+            if(plateInput.value.length === 7) {
+                window.location.href = `debitos.html?plate=${plateInput.value}`;
             }
         });
     </script>
