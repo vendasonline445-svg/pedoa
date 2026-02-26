@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
+
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -12,49 +13,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedágio Digital</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Acesse e controle seus pagamentos de pedágio digital em um só lugar. Rápido, seguro e fácil.">
+    <meta name="theme-color" content="#0b2239">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    
     <style>
-        /* RESET E GERAL */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Ubuntu', sans-serif;
+        :root {
+            --primary-lime: #cfff00;
         }
 
-        body {
-            min-height: 100vh;
-            width: 100%;
-            overflow-x: hidden;
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
             background-color: #000;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND CONFORME SOLICITADO */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            /* Overlay escuro + Imagem fornecida */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('/inicio-bg-B9TsfniF.png') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
-        }
-
-        /* FUNDO FIXO */
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop'); 
-            background-size: cover;
-            background-position: center;
-        }
-
-        .background-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%);
         }
 
         /* HEADER */
@@ -62,336 +53,281 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            width: 100%;
-            position: relative;
+            padding: 30px 80px;
             z-index: 10;
         }
 
-        .logo img {
-            height: 35px; 
+        .logo-img {
+            height: 50px; /* Ajuste conforme o tamanho da sua imagem */
             width: auto;
         }
 
-        nav ul {
+        .nav-right {
             display: flex;
+            gap: 30px;
             align-items: center;
-            gap: 20px;
-            list-style: none;
         }
 
-        nav a {
-            text-decoration: none;
+        .nav-right a {
             color: #fff;
-            font-size: 14px;
-            white-space: nowrap;
-        }
-
-        .btn-header {
-            border: 1px solid #fff;
-            padding: 8px 18px;
-            border-radius: 30px;
+            text-decoration: none;
+            font-size: 15px;
             font-weight: 500;
         }
 
-        /* HERO SECTION */
-        .hero {
+        /* BOTÃO CRIAR CONTA COM BORDA IGUAL AO CONCORRENTE */
+        .btn-account {
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 10px 22px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-account:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+        .content-container {
+            flex: 1;
             display: flex;
-            flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            padding: 0 80px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 5%;
-            flex: 1;
             width: 100%;
-            position: relative;
-            z-index: 2;
         }
 
-        .hero-text {
-            max-width: 550px;
+        .text-side {
+            max-width: 680px;
+        }
+
+        .text-side h1 {
             color: #fff;
-            text-align: left;
-        }
-
-        .hero-text h1 {
-            font-size: clamp(32px, 5vw, 52px); /* Responsividade fluida */
-            font-weight: 700;
+            font-size: 72px;
+            font-weight: 900;
             line-height: 1.1;
             text-transform: uppercase;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
         }
 
-        .hero-text .highlight {
-            color: #D6F31F;
+        .text-side h1 span {
+            color: var(--primary-lime);
         }
 
-        .hero-text p {
-            font-size: 16px;
-            color: #ccc;
-            margin-top: 20px;
-            font-weight: 300;
-        }
-
-        /* CARD */
-        .card {
-            background-color: #f5f6f8;
-            padding: 30px;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            margin-left: 20px;
-        }
-
-        .card h2 {
+        .text-side p {
+            color: #ffffff;
             font-size: 18px;
-            color: #1a1a1a;
-            margin-bottom: 20px;
             font-weight: 400;
-            text-align: center;
+            opacity: 0.9;
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 14px;
-            background-color: #eef0f2;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            outline: none;
+        /* CARD BRANCO */
+        .search-card {
+            background-color: #f8f9fa;
+            width: 440px;
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
         }
 
-        .checkbox-group {
-            display: flex;
-            margin-bottom: 10px;
-            font-size: 11px;
-            color: #333;
+        .search-card h2 {
+            font-size: 24px;
+            color: #212529;
+            margin-bottom: 30px;
             line-height: 1.3;
+            font-weight: 400;
         }
 
-        .checkbox-group input { margin-right: 8px; margin-top: 2px; }
-
-        .fake-recaptcha {
-            background-color: #f9f9f9;
-            border: 1px solid #d3d3d3;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 10px;
-            margin-bottom: 15px;
+        .search-card h2 strong {
+            font-weight: 800;
         }
 
-        .recaptcha-box {
-            width: 24px; height: 24px;
-            border: 2px solid #c1c1c1;
-            background: #fff;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .btn-submit {
+        .plate-input {
             width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            background-color: #dbe0e6;
-            color: #9fa6ad;
+            padding: 18px;
+            background-color: #f0f2f5;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            color: #495057;
+            margin-bottom: 20px;
+            transition: border 0.3s;
+        }
+
+        .plate-input:focus {
+            outline: none;
+            border: 1px solid var(--primary-lime);
+        }
+
+        .checks {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .check-row {
+            display: flex;
+            gap: 12px;
+            font-size: 13px;
+            color: #6c757d;
+            line-height: 1.4;
             cursor: pointer;
+        }
+
+        .check-row input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .check-row a {
+            color: #6c757d;
+            text-decoration: underline;
+        }
+
+        .btn-main {
+            width: 100%;
+            padding: 20px;
+            background-color: #e9ecef;
+            color: #adb5bd;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 16px;
+            cursor: not-allowed;
             transition: 0.3s;
         }
 
-        .btn-submit.active {
-            background-color: #D6F31F;
-            color: #1a1a1a;
+        .btn-main.ready {
+            background-color: #dee2e6; /* Estilo cinza do print quando ativo */
+            color: #495057;
+            cursor: pointer;
         }
 
-        /* SUPORTE E FOOTER */
-        .support-bar {
-            background-color: #111;
-            color: #fff;
-            padding: 12px 5%;
-            border-bottom: 1px solid #222;
-        }
-
-        .support-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
+        .footer-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #000;
+            font-weight: 700;
+            text-decoration: underline;
             font-size: 14px;
         }
 
-        footer {
-            background-color: #212529;
-            padding: 20px 5%;
+        /* FOOTER COM LOGO ECOVIAS */
+        .site-footer {
+            position: absolute;
+            bottom: 30px;
+            left: 80px;
         }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
+        .logo-eco {
+            height: 35px;
+            opacity: 0.8;
         }
 
-        .footer-left img { height: 30px; }
-        .footer-right { display: flex; align-items: center; gap: 20px; }
-        .logo-motiva { height: 18px !important; }
-        .logo-eco { height: 25px !important; }
-
-        /* --- RESPONSIVIDADE MOBILE --- */
-        @media (max-width: 900px) {
-            header { padding: 15px 5%; }
-            nav ul { gap: 10px; }
-            nav a { font-size: 12px; }
-            .btn-header { padding: 6px 12px; }
-
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 20px;
-            }
-
-            .hero-text {
-                max-width: 100%;
-                margin-bottom: 30px;
-            }
-
-            .hero-text h1 {
-                font-size: 36px;
-            }
-
-            .card {
-                margin-left: 0;
-                max-width: 100%;
-            }
-
-            .footer-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-right {
-                justify-content: center;
-            }
+        @media (max-width: 1100px) {
+            .content-container { flex-direction: column; text-align: center; padding: 100px 20px; }
+            .text-side h1 { font-size: 45px; }
+            .search-card { width: 100%; margin-top: 40px; }
+            header { padding: 20px; }
+            .site-footer { position: static; padding: 40px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="background-container">
-        <div class="background-overlay"></div>
-    </div>
-
+<div class="hero-section">
     <header>
         <div class="logo">
-            <img src="https://pedagiodigital.com/assets/logo-CWdoJbug.png" alt="Pedágio Digital">
+            <img src="/logo (1).png" alt="Pedágio Digital" class="logo-img">
         </div>
-        <nav>
-            <ul>
-                <li><a href="#">Fazer Login</a></li>
-                <li><a href="#">Dúvidas</a></li>
-                <li><a href="#" class="btn-header">Criar Conta</a></li>
-            </ul>
+        <nav class="nav-right">
+            <a href="#">Fazer Login</a>
+            <a href="#">Perguntas frequentes</a>
+            <a href="#" class="btn-account">Criar Conta</a>
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-text">
-            <h1>DESFRUTE DE TODA A COMODIDADE DO PEDÁGIO <span class="highlight">DIGITAL</span></h1>
+    <div class="content-container">
+        <div class="text-side">
+            <h1>Desfrute de toda<br>a comodidade do<br>pedágio <span>digital</span></h1>
             <p>Uma nova era para o pedágio começou: ágil e digital como tem que ser.</p>
         </div>
 
-        <div class="card">
-            <h2>Um <strong>único</strong> lugar para <strong>acessar</strong> e <strong>controlar</strong> seus pagamentos.</h2>
-            
-            <form id="debtForm">
-                <input type="text" id="plateInput" placeholder="DIGITE SUA PLACA" maxlength="7">
-
-                <div class="checkbox-group">
-                    <input type="checkbox" id="check1">
-                    <label for="check1">Aceito os <a href="#">Termos de Uso</a>.</label>
-                </div>
-
-                <div class="checkbox-group">
-                    <input type="checkbox" id="check2">
-                    <label for="check2">Estou ciente da <a href="#">Política de Privacidade</a>.</label>
-                </div>
-
-                <div class="fake-recaptcha">
-                    <div style="display:flex; align-items:center;">
-                        <div class="recaptcha-box" id="fakeCaptchaBox"></div>
-                        <span style="font-size:13px; color:#000;">Não sou um robô</span>
+        <div class="form-side">
+            <div class="search-card">
+                <h2>Um <strong>único</strong> lugar para <strong>acessar</strong> e <strong>controlar</strong> seus pagamentos.</h2>
+                
+                <form id="tollForm">
+                    <input type="text" id="placa" class="plate-input" placeholder="DIGITE SUA PLACA" maxlength="7">
+                    
+                    <div class="checks">
+                        <label class="check-row">
+                            <input type="checkbox" class="terms-chk">
+                            <span>Aceito os <a href="#">Termos e Condições de Uso</a>.</span>
+                        </label>
+                        <label class="check-row">
+                            <input type="checkbox" class="terms-chk">
+                            <span>Estou ciente da <a href="#">Política de Privacidade</a> e me responsabilizo pela veracidade dos dados.</span>
+                        </label>
                     </div>
-                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" width="25">
-                </div>
 
-                <button type="submit" id="submitBtn" class="btn-submit" disabled>Buscar débitos</button>
-            </form>
-        </div>
-    </section>
+                    <button type="submit" id="btnSubmit" class="btn-main" disabled>Buscar débitos</button>
+                </form>
 
-    <section class="support-bar">
-        <div class="support-container">
-            <span style="font-weight:700;">Central de atendimento</span>
-            <span>▼</span>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-left">
-                <img src="https://pedagiodigital.com/assets/logo-CWdoJbug.png" alt="Pedágio Digital">
-            </div>
-            <div class="footer-right">
-                <img src="https://pedagiodigital.com/assets/logo-motiva-BcheVkaT.svg" class="logo-motiva" alt="Motiva">
-                <img src="https://pedagiodigital.com/assets/logo-eco-Cdd8S58B.png" class="logo-eco" alt="Ecorodovias">
+                <a href="#" class="footer-link">Começar agora</a>
             </div>
         </div>
+    </div>
+
+    <footer class="site-footer">
+        <img src="/logo-eco.png" alt="Eco Rodovias" class="logo-eco">
     </footer>
+</div>
 
-    <script>
-        const plateInput = document.getElementById('plateInput');
-        const submitBtn = document.getElementById('submitBtn');
-        const fakeCaptchaBox = document.getElementById('fakeCaptchaBox');
-        let isCaptchaChecked = false;
+<script>
+    const inputPlaca = document.getElementById('placa');
+    const chks = document.querySelectorAll('.terms-chk');
+    const btn = document.getElementById('btnSubmit');
+    const form = document.getElementById('tollForm');
 
-        plateInput.addEventListener('input', function(e) {
-            this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-            if(this.value.length === 7) {
-                submitBtn.disabled = false;
-                submitBtn.classList.add('active');
-            } else {
-                submitBtn.disabled = true;
-                submitBtn.classList.remove('active');
-            }
-        });
+    function validate() {
+        const isPlacaValid = inputPlaca.value.length >= 7;
+        const areChksValid = Array.from(chks).every(c => c.checked);
 
-        fakeCaptchaBox.addEventListener('click', function() {
-            this.innerHTML = '✓';
-            this.style.color = '#009e55';
-            this.style.fontSize = '18px';
-            this.style.display = 'flex';
-            this.style.alignItems = 'center';
-            this.style.justifyContent = 'center';
-            isCaptchaChecked = true;
-        });
+        if (isPlacaValid && areChksValid) {
+            btn.disabled = false;
+            btn.classList.add('ready');
+        } else {
+            btn.disabled = true;
+            btn.classList.remove('ready');
+        }
+    }
 
-        document.getElementById('debtForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            if(plateInput.value.length === 7) {
-                window.location.href = `debitos.html?plate=${plateInput.value}`;
-            }
-        });
-    </script>
+    inputPlaca.addEventListener('input', (e) => {
+        // Formata para uppercase e remove caracteres especiais
+        e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        validate();
+    });
+
+    chks.forEach(c => c.addEventListener('change', validate));
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Redireciona para a página de débitos com a placa na URL
+        window.location.href = `debitos.html?placa=${inputPlaca.value}`;
+    });
+</script>
+
 </body>
 </html>
