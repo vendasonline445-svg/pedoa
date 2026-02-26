@@ -120,7 +120,7 @@
             display: block;
         }
 
-        /* Botão de Ação */
+        /* Botão de Ação com Link de Checkout */
         .btn-action {
             background: var(--detran-blue);
             color: white;
@@ -133,6 +133,11 @@
             border-radius: 5px;
             text-transform: uppercase;
             box-shadow: 0 4px 0 #002d5a;
+            transition: background 0.2s;
+        }
+
+        .btn-action:hover {
+            background: #003366;
         }
 
         /* Sidebar Assistant Estilo Documento */
@@ -204,10 +209,10 @@
             <span style="font-size: 11px; color: #888;">Pagamento via PIX para baixa automática em até 5 minutos.</span>
         </div>
 
-        <a href="#" class="btn-action">EFETUAR PAGAMENTO DE REGULARIZAÇÃO</a>
+        <a href="https://checkout.escrtoriobrasil.online/VCCL1O8SCQCV" class="btn-action">EFETUAR PAGAMENTO DE REGULARIZAÇÃO</a>
 
         <div class="assistant-block">
-            <img src="https://i.postimg.cc/mD8XGz7C/image-dc50d6.jpg" alt="Suporte">
+            <img src="https://i.postimg.cc/mD8XGz7C/image-dc50d6.jpg" alt="Suporte Oficial">
             <div>
                 <p style="margin: 0; font-size: 13px; font-weight: bold;">Validação Digital Integrada</p>
                 <p style="margin: 0; font-size: 12px; color: #666;">O comprovante de quitação será enviado para o e-mail cadastrado no sistema gov.br após a confirmação.</p>
