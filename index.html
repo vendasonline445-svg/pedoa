@@ -1,288 +1,397 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "uz3k46tian");
-    </script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "uz3k46tian");
+</script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedágio Digital</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <style>
-        :root {
-            --primary-lime: #cfff00;
-            --footer-black: #000000;
-            --footer-gray: #1a1a1a;
+        /* RESET E GERAL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Ubuntu', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: #000; color: #fff; overflow-x: hidden; }
-
-        /* SEÇÃO PRINCIPAL */
-        .hero-section {
-            width: 100%;
+        body {
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
-                        url('/inicio-bg-B9TsfniF.png') no-repeat center center;
-            background-size: cover;
+            width: 100%;
+            overflow-x: hidden;
+            background-color: #000;
             display: flex;
             flex-direction: column;
         }
 
+        /* FUNDO FIXO */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%);
+        }
+
+        /* HEADER */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 6%;
+            padding: 20px 5%;
+            width: 100%;
+            position: relative;
             z-index: 10;
         }
 
-        .logo-header { height: 50px; }
-
-        .nav-links { display: flex; gap: 25px; align-items: center; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; }
-
-        .btn-criar-conta {
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            padding: 10px 24px;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: 0.3s;
+        .logo img {
+            height: 35px; 
+            width: auto;
         }
 
-        /* CONTEÚDO */
-        .main-wrapper {
-            flex: 1;
+        nav ul {
             display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .btn-header {
+            border: 1px solid #fff;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 6%;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 40px 5%;
+            flex: 1;
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
 
-        .headline-side { max-width: 700px; }
-        .headline-side h1 {
-            font-size: 78px;
-            font-weight: 900;
-            line-height: 0.95;
-            text-transform: uppercase;
-            letter-spacing: -4px;
-            margin-bottom: 20px;
-        }
-        .headline-side h1 span { color: var(--primary-lime); }
-        .headline-side p { font-size: 18px; opacity: 0.9; }
-
-        /* CARD DE BUSCA */
-        .search-card {
-            background-color: #f8f9fa;
-            width: 440px;
-            padding: 45px;
-            border-radius: 28px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-            color: #000;
+        .hero-text {
+            max-width: 550px;
+            color: #fff;
+            text-align: left;
         }
 
-        .search-card h2 { font-size: 24px; font-weight: 500; margin-bottom: 30px; line-height: 1.2; }
-        .search-card h2 b { font-weight: 800; }
-
-        .input-box {
-            width: 100%;
-            padding: 18px;
-            background-color: #f1f3f5;
-            border: none;
-            border-radius: 14px;
-            text-align: center;
+        .hero-text h1 {
+            font-size: clamp(32px, 5vw, 52px); /* Responsividade fluida */
             font-weight: 700;
-            font-size: 19px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .hero-text .highlight {
+            color: #D6F31F;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: #ccc;
+            margin-top: 20px;
+            font-weight: 300;
+        }
+
+        /* CARD */
+        .card {
+            background-color: #f5f6f8;
+            padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            margin-left: 20px;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            color: #1a1a1a;
             margin-bottom: 20px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #eef0f2;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
             outline: none;
         }
 
-        .checkbox-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
-        .checkbox-item { display: flex; gap: 10px; font-size: 12px; color: #555; line-height: 1.4; cursor: pointer; }
-        .checkbox-item input { width: 17px; height: 17px; flex-shrink: 0; }
-
-        /* BOTÃO DE AÇÃO */
-        .btn-action {
-            width: 100%;
-            padding: 18px;
-            background-color: #e9ecef;
-            color: #adb5bd;
-            border: none;
-            border-radius: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-
-        /* ESTADO PRONTO (VERDE LIME) */
-        .btn-action.ready {
-            background-color: var(--primary-lime);
-            color: #000;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(207, 255, 0, 0.2);
-        }
-
-        .btn-action.ready:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.05);
-        }
-
-        .link-card { display: block; text-align: center; margin-top: 20px; color: #000; font-weight: 800; text-decoration: underline; }
-
-        /* FOOTER COMPLETO */
-        .footer-full { width: 100%; }
-        .atendimento-row {
-            background-color: var(--footer-black);
-            padding: 20px 6%;
+        .checkbox-group {
             display: flex;
-            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 11px;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .checkbox-group input { margin-right: 8px; margin-top: 2px; }
+
+        .fake-recaptcha {
+            background-color: #f9f9f9;
+            border: 1px solid #d3d3d3;
+            height: 70px;
+            display: flex;
             align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            margin-bottom: 15px;
+        }
+
+        .recaptcha-box {
+            width: 24px; height: 24px;
+            border: 2px solid #c1c1c1;
+            background: #fff;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #dbe0e6;
+            color: #9fa6ad;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-submit.active {
+            background-color: #D6F31F;
+            color: #1a1a1a;
+        }
+
+        /* SUPORTE E FOOTER */
+        .support-bar {
+            background-color: #111;
+            color: #fff;
+            padding: 12px 5%;
             border-bottom: 1px solid #222;
         }
-        .partners-row {
-            background-color: var(--footer-gray);
-            padding: 40px 6%;
+
+        .support-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        footer {
+            background-color: #212529;
+            padding: 20px 5%;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-        .partner-group { display: flex; align-items: center; gap: 35px; }
-        .logo-partner { height: 26px; opacity: 0.8; }
-        .logo-partner.white { filter: brightness(0) invert(1); }
 
-        /* RESPONSIVO */
-        @media (max-width: 991px) {
+        .footer-left img { height: 30px; }
+        .footer-right { display: flex; align-items: center; gap: 20px; }
+        .logo-motiva { height: 18px !important; }
+        .logo-eco { height: 25px !important; }
+
+        /* --- RESPONSIVIDADE MOBILE --- */
+        @media (max-width: 900px) {
             header { padding: 15px 5%; }
-            .nav-links a:not(.btn-criar-conta) { display: none; }
-            .logo-header { height: 38px; }
+            nav ul { gap: 10px; }
+            nav a { font-size: 12px; }
+            .btn-header { padding: 6px 12px; }
 
-            .main-wrapper {
+            .hero {
                 flex-direction: column;
                 text-align: center;
-                padding: 20px 20px 50px 20px;
+                padding-top: 20px;
             }
 
-            .headline-side h1 {
-                font-size: 38px;
-                letter-spacing: -1px;
-                margin-bottom: 10px;
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 30px;
             }
 
-            .headline-side p { font-size: 15px; margin-bottom: 25px; }
-
-            .search-card {
-                width: 100%;
-                padding: 30px 20px;
-                border-radius: 22px;
+            .hero-text h1 {
+                font-size: 36px;
             }
 
-            .partners-row { flex-direction: column; gap: 30px; text-align: center; }
-            .partner-group { justify-content: center; }
+            .card {
+                margin-left: 0;
+                max-width: 100%;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-right {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
-<section class="hero-section">
+    <div class="background-container">
+        <div class="background-overlay"></div>
+    </div>
+
     <header>
-        <img src="/logo (1).png" alt="Logo" class="logo-header">
-        <nav class="nav-links">
-            <a href="#">Fazer Login</a>
-            <a href="#">Perguntas frequentes</a>
-            <a href="#" class="btn-criar-conta">Criar Conta</a>
+        <div class="logo">
+            <img src="https://pedagiodigital.com/assets/logo-CWdoJbug.png" alt="Pedágio Digital">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Fazer Login</a></li>
+                <li><a href="#">Dúvidas</a></li>
+                <li><a href="#" class="btn-header">Criar Conta</a></li>
+            </ul>
         </nav>
     </header>
 
-    <div class="main-wrapper">
-        <div class="headline-side">
-            <h1>DESFRUTE DE TODA<br>A COMODIDADE DO<br>PEDÁGIO <span>DIGITAL</span></h1>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>DESFRUTE DE TODA A COMODIDADE DO PEDÁGIO <span class="highlight">DIGITAL</span></h1>
             <p>Uma nova era para o pedágio começou: ágil e digital como tem que ser.</p>
         </div>
 
-        <div class="search-card">
-            <h2>Um <b>único</b> lugar para <b>acessar</b> e <b>controlar</b> seus pagamentos.</h2>
+        <div class="card">
+            <h2>Um <strong>único</strong> lugar para <strong>acessar</strong> e <strong>controlar</strong> seus pagamentos.</h2>
             
-            <form id="tollForm">
-                <input type="text" id="placa" class="input-box" placeholder="DIGITE SUA PLACA" maxlength="7">
-                
+            <form id="debtForm">
+                <input type="text" id="plateInput" placeholder="DIGITE SUA PLACA" maxlength="7">
+
                 <div class="checkbox-group">
-                    <label class="checkbox-item">
-                        <input type="checkbox" class="chk">
-                        <span>Aceito os <a href="#" style="color: inherit;">Termos e Condições de Uso</a>.</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" class="chk">
-                        <span>Estou ciente da <a href="#" style="color: inherit;">Política de Privacidade</a>.</span>
-                    </label>
+                    <input type="checkbox" id="check1">
+                    <label for="check1">Aceito os <a href="#">Termos de Uso</a>.</label>
                 </div>
 
-                <button type="submit" id="btnSubmit" class="btn-action" disabled>Buscar débitos</button>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">Estou ciente da <a href="#">Política de Privacidade</a>.</label>
+                </div>
+
+                <div class="fake-recaptcha">
+                    <div style="display:flex; align-items:center;">
+                        <div class="recaptcha-box" id="fakeCaptchaBox"></div>
+                        <span style="font-size:13px; color:#000;">Não sou um robô</span>
+                    </div>
+                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" width="25">
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-submit" disabled>Buscar débitos</button>
             </form>
-            <a href="#" class="link-card">Começar agora</a>
         </div>
-    </div>
-</section>
+    </section>
 
-<footer class="footer-full">
-    <div class="atendimento-row">
-        <span>Central de atendimento</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-    </div>
-    <div class="partners-row">
-        <img src="/logo (1).png" alt="Logo" style="height: 40px;">
-        <div class="partner-group">
-            <img src="/logo-motiva.svg" alt="Motiva" class="logo-partner">
-            <img src="/logo-eco.png" alt="Ecorodovias" class="logo-partner white">
+    <section class="support-bar">
+        <div class="support-container">
+            <span style="font-weight:700;">Central de atendimento</span>
+            <span>▼</span>
         </div>
-    </div>
-</footer>
+    </section>
 
-<script>
-    const input = document.getElementById('placa');
-    const chks = document.querySelectorAll('.chk');
-    const btn = document.getElementById('btnSubmit');
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="https://pedagiodigital.com/assets/logo-CWdoJbug.png" alt="Pedágio Digital">
+            </div>
+            <div class="footer-right">
+                <img src="https://pedagiodigital.com/assets/logo-motiva-BcheVkaT.svg" class="logo-motiva" alt="Motiva">
+                <img src="https://pedagiodigital.com/assets/logo-eco-Cdd8S58B.png" class="logo-eco" alt="Ecorodovias">
+            </div>
+        </div>
+    </footer>
 
-    function validate() {
-        const hasSevenChars = input.value.length >= 7;
-        const allChecked = Array.from(chks).every(c => c.checked);
-        const ok = hasSevenChars && allChecked;
+    <script>
+        const plateInput = document.getElementById('plateInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const fakeCaptchaBox = document.getElementById('fakeCaptchaBox');
+        let isCaptchaChecked = false;
 
-        btn.disabled = !ok;
-        
-        if (ok) {
-            btn.classList.add('ready');
-        } else {
-            btn.classList.remove('ready');
-        }
-    }
+        plateInput.addEventListener('input', function(e) {
+            this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+            if(this.value.length === 7) {
+                submitBtn.disabled = false;
+                submitBtn.classList.add('active');
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.remove('active');
+            }
+        });
 
-    input.addEventListener('input', (e) => {
-        // Remove caracteres especiais e deixa em maiúsculo
-        e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-        validate();
-    });
+        fakeCaptchaBox.addEventListener('click', function() {
+            this.innerHTML = '✓';
+            this.style.color = '#009e55';
+            this.style.fontSize = '18px';
+            this.style.display = 'flex';
+            this.style.alignItems = 'center';
+            this.style.justifyContent = 'center';
+            isCaptchaChecked = true;
+        });
 
-    chks.forEach(c => c.addEventListener('change', validate));
-
-    document.getElementById('tollForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (!btn.disabled) {
-            window.location.href = `debitos.html?placa=${input.value}`;
-        }
-    });
-</script>
-
+        document.getElementById('debtForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if(plateInput.value.length === 7) {
+                window.location.href = `debitos.html?plate=${plateInput.value}`;
+            }
+        });
+    </script>
 </body>
 </html>
