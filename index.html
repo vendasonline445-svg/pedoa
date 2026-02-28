@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "uz3k46tian");
-</script>
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "uz3k46tian");
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,7 +51,6 @@
         .nav-links { display: flex; gap: 25px; align-items: center; }
         .nav-links a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; }
 
-        /* BOTÃO COM BORDA DO CONCORRENTE */
         .btn-criar-conta {
             border: 1px solid rgba(255, 255, 255, 0.6);
             padding: 10px 24px;
@@ -108,12 +106,14 @@
             font-weight: 700;
             font-size: 19px;
             margin-bottom: 20px;
+            outline: none;
         }
 
         .checkbox-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
-        .checkbox-item { display: flex; gap: 10px; font-size: 12px; color: #555; line-height: 1.4; }
+        .checkbox-item { display: flex; gap: 10px; font-size: 12px; color: #555; line-height: 1.4; cursor: pointer; }
         .checkbox-item input { width: 17px; height: 17px; flex-shrink: 0; }
 
+        /* BOTÃO DE AÇÃO */
         .btn-action {
             width: 100%;
             padding: 18px;
@@ -123,9 +123,22 @@
             border-radius: 12px;
             font-weight: 800;
             text-transform: uppercase;
+            transition: all 0.3s ease;
         }
 
-        .btn-action.ready { background-color: #dee2e6; color: #495057; cursor: pointer; }
+        /* ESTADO PRONTO (VERDE LIME) */
+        .btn-action.ready {
+            background-color: var(--primary-lime);
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(207, 255, 0, 0.2);
+        }
+
+        .btn-action.ready:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
         .link-card { display: block; text-align: center; margin-top: 20px; color: #000; font-weight: 800; text-decoration: underline; }
 
         /* FOOTER COMPLETO */
@@ -149,9 +162,7 @@
         .logo-partner { height: 26px; opacity: 0.8; }
         .logo-partner.white { filter: brightness(0) invert(1); }
 
-        /* =============================================
-           RESPONSIVO MOBILE (IGUAL AO ANEXO)
-        ============================================= */
+        /* RESPONSIVO */
         @media (max-width: 991px) {
             header { padding: 15px 5%; }
             .nav-links a:not(.btn-criar-conta) { display: none; }
@@ -160,11 +171,11 @@
             .main-wrapper {
                 flex-direction: column;
                 text-align: center;
-                padding: 20px 20px 50px 20px; /* Encurta a página */
+                padding: 20px 20px 50px 20px;
             }
 
             .headline-side h1 {
-                font-size: 38px; /* Texto compacto */
+                font-size: 38px;
                 letter-spacing: -1px;
                 margin-bottom: 10px;
             }
@@ -173,7 +184,7 @@
 
             .search-card {
                 width: 100%;
-                padding: 30px 20px; /* Card menor */
+                padding: 30px 20px;
                 border-radius: 22px;
             }
 
@@ -244,20 +255,32 @@
     const btn = document.getElementById('btnSubmit');
 
     function validate() {
-        const ok = input.value.length >= 7 && Array.from(chks).every(c => c.checked);
+        const hasSevenChars = input.value.length >= 7;
+        const allChecked = Array.from(chks).every(c => c.checked);
+        const ok = hasSevenChars && allChecked;
+
         btn.disabled = !ok;
-        ok ? btn.classList.add('ready') : btn.classList.remove('ready');
+        
+        if (ok) {
+            btn.classList.add('ready');
+        } else {
+            btn.classList.remove('ready');
+        }
     }
 
     input.addEventListener('input', (e) => {
+        // Remove caracteres especiais e deixa em maiúsculo
         e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
         validate();
     });
+
     chks.forEach(c => c.addEventListener('change', validate));
 
     document.getElementById('tollForm').addEventListener('submit', (e) => {
         e.preventDefault();
-        window.location.href = `debitos.html?placa=${input.value}`;
+        if (!btn.disabled) {
+            window.location.href = `debitos.html?placa=${input.value}`;
+        }
     });
 </script>
 
